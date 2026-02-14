@@ -4,14 +4,19 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "sphinx-revealjs-quickstart"
-description = "TODO write description or delete"
+description = "Quickstart CLI to scaffold Sphinx + sphinx-revealjs presentation projects"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT License" }
 authors = [{ name = "nikkie", email = "takuyafjp+develop@gmail.com" }]
-keywords = ["TODO", "write", "keywords"]
+keywords = ["sphinx", "sphinx-revealjs", "revealjs", "presentation", "quickstart"]
 classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: Console",
+    "Framework :: Sphinx",
     "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3 :: Only",
@@ -20,6 +25,10 @@ classifiers = [
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Topic :: Documentation",
+    "Topic :: Documentation :: Sphinx",
+    "Topic :: Multimedia :: Graphics :: Presentation",
+    "Topic :: Software Development :: Documentation",
 ]
 dynamic = ["version"]
 dependencies = ["Sphinx"]
@@ -32,6 +41,7 @@ dev = [
 
 [project.urls]
 Repository = "https://github.com/ftnext/sphinx-revealjs-quickstart"
+Issues = "https://github.com/ftnext/sphinx-revealjs-quickstart/issues"
 
 [project.scripts]
 sphinx-revealjs-quickstart = "sphinx_revealjs_quickstart.__main__:main"
