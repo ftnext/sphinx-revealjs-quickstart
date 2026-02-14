@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sphinx-revealjs-quickstart"
+description = "TODO write description or delete"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT License" }
+authors = [{ name = "nikkie", email = "takuyafjp+develop@gmail.com" }]
+keywords = ["TODO", "write", "keywords"]
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-randomly",
+]
+
+[project.urls]
+Repository = "https://github.com/ftnext/sphinx-revealjs-quickstart"
+
+[tool.setuptools.dynamic]
+version = { attr = "sphinx_revealjs_quickstart.__version__" }
