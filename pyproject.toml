@@ -32,5 +32,8 @@ dev = [
 [project.urls]
 Repository = "https://github.com/ftnext/sphinx-revealjs-quickstart"
 
+[project.scripts]
+sphinx-revealjs-quickstart = "sphinx_revealjs_quickstart.__main__:main"
+
 [tool.setuptools.dynamic]
 version = { attr = "sphinx_revealjs_quickstart.__version__" }
