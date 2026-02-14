@@ -1,0 +1,34 @@
+
+# -- Options for Reveal.js output -------------------------------------------------
+revealjs_static_path = ["_static"]
+revealjs_script_conf = {
+    "controls": True,
+    "progress": True,
+    "history": True,
+    "center": True,
+    "transition": "none",
+    "slideNumber": "c/t",
+}
+revealjs_script_plugins = [
+    {
+        "name": "RevealHighlight",
+        "src": "revealjs/plugin/highlight/highlight.js",
+    },
+    {
+        "name": "RevealNotes",
+        "src": "revealjs/plugin/notes/notes.js",
+    },
+    {
+        "name": "CopyCode",
+        "src": "revealjs/plugin/copycode/copycode.js",
+    },
+]
+
+revealjs_css_files = [
+    "revealjs/plugin/highlight/zenburn.css",
+    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css",
+    "css/common.css",
+]
+
+# -- Options for sphinxcontrib-budoux -------------------------------------------------
+budoux_targets = ["h1", "h2", "h3"]

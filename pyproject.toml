@@ -38,3 +38,6 @@ sphinx-revealjs-quickstart = "sphinx_revealjs_quickstart.__main__:main"
 
 [tool.setuptools.dynamic]
 version = { attr = "sphinx_revealjs_quickstart.__version__" }
+
+[tool.setuptools.package-data]
+sphinx_revealjs_quickstart = ["templates/*.jinja"]

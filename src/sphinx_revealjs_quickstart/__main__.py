@@ -1,7 +1,16 @@
 import argparse
+import importlib.resources
 from pathlib import Path
 
 from sphinx.cmd.quickstart import generate
+from sphinx.util.template import SphinxRenderer
+
+
+def render_package_template(template_name: str, context: dict[str, object]) -> str:
+    template_path = importlib.resources.files("sphinx_revealjs_quickstart").joinpath(
+        "templates", template_name
+    )
+    return SphinxRenderer.render_from_file(template_path, context)
 
 
 def main():
@@ -38,60 +47,14 @@ def main():
         overwrite=False,
     )
 
+    context: dict[str, object] = {}
+
     common_css_file = Path("source/_static/css/common.css")
     common_css_file.parent.mkdir(parents=True, exist_ok=True)
     common_css_file.write_text(
-        """\
-.reveal h1,
-.reveal h2,
-.reveal h3,
-.reveal h4,
-.reveal h5,
-.reveal h6 {
-  text-transform: none;
-}
-
-.reveal strong {
-  color: #5ae08e;
-}
-"""
+        render_package_template("common.css.jinja", context) + "\n",
+        encoding="utf-8",
     )
 
-    with Path("source/conf.py").open("a") as confpy:
-        confpy.write(
-            """
-# -- Options for Reveal.js output -------------------------------------------------
-revealjs_static_path = ["_static"]
-revealjs_script_conf = {
-    "controls": True,
-    "progress": True,
-    "history": True,
-    "center": True,
-    "transition": "none",
-    "slideNumber": "c/t",
-}
-revealjs_script_plugins = [
-    {
-        "name": "RevealHighlight",
-        "src": "revealjs/plugin/highlight/highlight.js",
-    },
-    {
-        "name": "RevealNotes",
-        "src": "revealjs/plugin/notes/notes.js",
-    },
-    {
-        "name": "CopyCode",
-        "src": "revealjs/plugin/copycode/copycode.js",
-    },
-]
-
-revealjs_css_files = [
-    "revealjs/plugin/highlight/zenburn.css",
-    "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css",
-    "css/common.css",
-]
-
-# -- Options for sphinxcontrib-budoux -------------------------------------------------
-budoux_targets = ["h1", "h2", "h3"]
-"""
-    )
+    with Path("source/conf.py").open("a", encoding="utf-8") as confpy:
+        confpy.write(render_package_template("conf_append.py.jinja", context) + "\n")
