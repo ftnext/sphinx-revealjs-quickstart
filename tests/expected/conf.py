@@ -16,6 +16,7 @@ author = 'Alice'
 extensions = [
     'sphinx.ext.githubpages',
     'sphinx_revealjs',
+    'sphinx_revealjs.ext.footnotes',
     'sphinx_design',
     'sphinx_new_tab_link',
     'sphinxcontrib.budoux',
