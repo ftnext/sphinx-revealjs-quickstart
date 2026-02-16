@@ -59,3 +59,9 @@ def main():
 
     with Path("source/conf.py").open("a", encoding="utf-8") as confpy:
         confpy.write(render_package_template("conf_append.py.jinja", context) + "\n")
+
+    makefile = Path("Makefile")
+    makefile.write_text(
+        render_package_template("Makefile.jinja", context) + "\n",
+        encoding="utf-8",
+    )
