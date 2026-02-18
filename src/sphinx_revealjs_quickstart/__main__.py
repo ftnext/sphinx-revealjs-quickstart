@@ -65,3 +65,10 @@ def main():
         render_package_template("Makefile.jinja", context) + "\n",
         encoding="utf-8",
     )
+
+    actions_file = Path(".github/workflows/publish-pages.yml")
+    actions_file.parent.mkdir(parents=True, exist_ok=True)
+    actions_file.write_text(
+        render_package_template("publish-pages.yml.jinja", context) + "\n",
+        encoding="utf-8",
+    )
