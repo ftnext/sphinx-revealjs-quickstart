@@ -1,4 +1,4 @@
-.PHONY: slide
+.PHONY: slide clean
 
 slide:
 	@uvx --from sphinx \
@@ -10,3 +10,6 @@ slide:
 		--with sphinx-revealjs-copycode \
 		--with sphinx-revealjs-ext-codeblock \
 		sphinx-build -M revealjs source build
+
+clean:
+	@uvx --from sphinx sphinx-build -M clean source build
