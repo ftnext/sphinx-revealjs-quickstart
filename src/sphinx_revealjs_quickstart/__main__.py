@@ -72,3 +72,10 @@ def main():
         render_package_template("publish-pages.yml.jinja", context) + "\n",
         encoding="utf-8",
     )
+
+    page_html_file = Path("source/_templates/page.html")
+    page_html_file.parent.mkdir(parents=True, exist_ok=True)
+    page_html_file.write_text(
+        render_package_template("page.html.jinja", context) + "\n",
+        encoding="utf-8",
+    )
