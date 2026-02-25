@@ -3,6 +3,7 @@ import importlib.resources
 from pathlib import Path
 
 from sphinx.cmd.quickstart import generate
+from sphinx.util.console import bold
 from sphinx.util.template import SphinxRenderer
 
 
@@ -79,3 +80,5 @@ def main():
         render_package_template("page.html.jinja", context) + "\n",
         encoding="utf-8",
     )
+
+    print(bold("Configure html_context in source/conf.py"))
