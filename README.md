@@ -12,12 +12,17 @@ uvx sphinx-revealjs-quickstart -p project -a author
 
 ```text
 .
+├── .github/
+│   └── workflows/
+│       └── publish-pages.yml
+├── Makefile
 ├── build/
 └── source/
     ├── _static/
     │   └── css/
     │       └── common.css
     ├── _templates/
+    │   └── page.html
     ├── conf.py
     └── index.rst
 ```
