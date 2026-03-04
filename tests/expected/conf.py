@@ -69,8 +69,7 @@ revealjs_css_files = [
 # -- Options for sphinxcontrib-budoux -------------------------------------------------
 budoux_targets = ["h1", "h2", "h3"]
 
-# -- Options for Open Graph Protocol -------------------------------------------------
+# -- Options for html_context -------------------------------------------------
 html_context = {
-    "twitter_site": "",
-    "site_base_url": "",
+    "highlight_color": "#5ae08e",
 }

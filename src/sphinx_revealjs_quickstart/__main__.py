@@ -52,9 +52,11 @@ def main():
         overwrite=False,
     )
 
-    context: dict[str, object] = {}
+    context: dict[str, object] = {
+        "github_pages": args.github_pages,
+    }
 
-    common_css_file = Path("source/_static/css/common.css")
+    common_css_file = Path("source/_static/css/common.css_t")
     common_css_file.parent.mkdir(parents=True, exist_ok=True)
     common_css_file.write_text(
         render_package_template("common.css.jinja", context) + "\n",
@@ -70,18 +72,19 @@ def main():
         encoding="utf-8",
     )
 
-    actions_file = Path(".github/workflows/publish-pages.yml")
-    actions_file.parent.mkdir(parents=True, exist_ok=True)
-    actions_file.write_text(
-        render_package_template("publish-pages.yml.jinja", context) + "\n",
-        encoding="utf-8",
-    )
+    if args.github_pages:
+        actions_file = Path(".github/workflows/publish-pages.yml")
+        actions_file.parent.mkdir(parents=True, exist_ok=True)
+        actions_file.write_text(
+            render_package_template("publish-pages.yml.jinja", context) + "\n",
+            encoding="utf-8",
+        )
 
-    page_html_file = Path("source/_templates/page.html")
-    page_html_file.parent.mkdir(parents=True, exist_ok=True)
-    page_html_file.write_text(
-        render_package_template("page.html.jinja", context) + "\n",
-        encoding="utf-8",
-    )
+        page_html_file = Path("source/_templates/page.html")
+        page_html_file.parent.mkdir(parents=True, exist_ok=True)
+        page_html_file.write_text(
+            render_package_template("page.html.jinja", context) + "\n",
+            encoding="utf-8",
+        )
 
-    print(bold("Configure html_context in source/conf.py"))
+        print(bold("Configure html_context in source/conf.py"))

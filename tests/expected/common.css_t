@@ -6,10 +6,10 @@
 .reveal h6 {
   text-transform: none;
 }
-{% raw %}
+
 {% if highlight_color %}
 .reveal strong {
   color: {{ highlight_color }};
 }
 {% endif %}
-{% endraw %}
+
