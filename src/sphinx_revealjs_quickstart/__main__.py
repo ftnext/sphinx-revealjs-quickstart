@@ -3,6 +3,7 @@ import importlib.resources
 from pathlib import Path
 
 from sphinx.cmd.quickstart import generate
+from sphinx.cmd.quickstart import get_parser as sphinx_get_parser
 from sphinx.util.console import bold
 from sphinx.util.template import SphinxRenderer
 
@@ -15,9 +16,11 @@ def render_package_template(template_name: str, context: dict[str, object]) -> s
 
 
 def main():
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-p", "--project", required=True)
-    parser.add_argument("-a", "--author", required=True)
+    parser = argparse.ArgumentParser(
+        parents=[sphinx_get_parser()],
+        conflict_handler="resolve",
+    )
+    parser.add_argument("--github-pages", action="store_true", default=False)
     args = parser.parse_args()
 
     generate(
@@ -25,9 +28,10 @@ def main():
             "quiet": True,
             "project": args.project,
             "author": args.author,
-            "version": "",
-            "language": "ja",
-            "sep": True,
+            "version": args.version,
+            "release": args.release,
+            "language": args.language,
+            "sep": args.sep if args.sep is not None else True,
             "makefile": False,
             "batchfile": False,
             "extensions": [
@@ -40,11 +44,10 @@ def main():
                 "sphinx_revealjs_copycode",
                 "sphinx_revealjs_ext_codeblock",
             ],
-            # sphinx.cmd.quickstart.get_parser() default values
-            "master": "index",
-            "path": ".",
-            "dot": "_",
-            "suffix": ".rst",
+            "master": args.master,
+            "path": args.path,
+            "dot": args.dot,
+            "suffix": args.suffix,
         },
         overwrite=False,
     )
