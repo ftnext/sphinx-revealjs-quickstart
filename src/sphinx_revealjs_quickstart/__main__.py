@@ -41,6 +41,7 @@ def main():
                 "sphinx_design",
                 "sphinx_new_tab_link",
                 "sphinxcontrib.budoux",
+                "sphinx_revealjs.ext.footnotes",
                 "sphinx_revealjs_copycode",
                 "sphinx_revealjs_ext_codeblock",
             ],
