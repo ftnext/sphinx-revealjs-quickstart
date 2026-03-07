@@ -33,7 +33,7 @@ def test_main_generates_project_files(tmp_path, monkeypatch):
     main()
 
     conf_path = tmp_path / "source" / "conf.py"
-    css_path = tmp_path / "source" / "_static" / "css" / "common.css_t"
+    css_path = tmp_path / "source" / "_static" / "css" / "common.css.jinja"
     index_path = tmp_path / "source" / "index.rst"
     makefile_path = tmp_path / "Makefile"
     actions_path = tmp_path / ".github" / "workflows" / "publish-pages.yml"
@@ -48,7 +48,7 @@ def test_main_generates_project_files(tmp_path, monkeypatch):
 
     expected_dir = Path(__file__).parent / "expected"
     expected_conf = (expected_dir / "conf.py").read_text()
-    expected_css = (expected_dir / "common.css_t").read_text()
+    expected_css = (expected_dir / "common.css.jinja").read_text()
     expected_makefile = (expected_dir / "Makefile").read_text()
 
     assert conf_path.read_text() == expected_conf

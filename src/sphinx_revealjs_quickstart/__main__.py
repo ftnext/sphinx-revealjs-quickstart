@@ -57,7 +57,7 @@ def main():
         "github_pages": args.github_pages,
     }
 
-    common_css_file = Path("source/_static/css/common.css_t")
+    common_css_file = Path("source/_static/css/common.css.jinja")
     common_css_file.parent.mkdir(parents=True, exist_ok=True)
     common_css_file.write_text(
         render_package_template("common.css.jinja", context) + "\n",
