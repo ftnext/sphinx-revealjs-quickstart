@@ -28,7 +28,7 @@ See the [sphinx-quickstart man page](https://www.sphinx-doc.org/en/master/man/sp
 └── source/
     ├── _static/
     │   └── css/
-    │       └── common.css_t
+    │       └── common.css.jinja
     ├── conf.py
     └── index.rst
 ```
@@ -45,7 +45,7 @@ See the [sphinx-quickstart man page](https://www.sphinx-doc.org/en/master/man/sp
 └── source/
     ├── _static/
     │   └── css/
-    │       └── common.css_t
+    │       └── common.css.jinja
     ├── _templates/
     │   └── page.html
     ├── conf.py
@@ -54,7 +54,7 @@ See the [sphinx-quickstart man page](https://www.sphinx-doc.org/en/master/man/sp
 
 ## About the Generated Content
 
-- `source/conf.py` and `source/_static/css/common.css_t` contain settings and styles that creator (nikkie) usually uses
+- `source/conf.py` and `source/_static/css/common.css.jinja` contain settings and styles that creator (nikkie) usually uses
 
 ### Customizing `highlight_color`
 
@@ -66,7 +66,7 @@ html_context = {
 }
 ```
 
-`common.css_t` is a Sphinx CSS template that reads this value at build time.
+`common.css.jinja` is a Sphinx CSS template that reads this value at build time.
 Change `highlight_color` to any CSS color value to update the `<strong>` tag color in your slides.
 Remove the entry entirely to omit the `strong` color rule from the generated CSS.
 

@@ -16,7 +16,7 @@ The CLI entry point is `src/sphinx_revealjs_quickstart/__main__.py`. The `main()
 1. Parses args (inherits all `sphinx-quickstart` args via `parents=[sphinx_get_parser()]`)
 2. Calls `sphinx.cmd.quickstart.generate()` to scaffold the base Sphinx project
 3. Appends to the generated `source/conf.py` using `conf_append.py.jinja`
-4. Writes `source/_static/css/common.css_t` and `Makefile` from their respective templates
+4. Writes `source/_static/css/common.css.jinja` and `Makefile` from their respective templates
 5. Optionally writes `.github/workflows/publish-pages.yml` and `source/_templates/page.html` when `--github-pages` is given
 
 Templates live in `src/sphinx_revealjs_quickstart/templates/*.jinja` and are rendered via Sphinx's `SphinxRenderer`.
@@ -36,8 +36,8 @@ Templates live in `src/sphinx_revealjs_quickstart/templates/*.jinja` and are ren
 ```
 
 **Why**: rendering happens twice:
-- **Pass 1** (build time): `SphinxRenderer` renders `common.css.jinja` → produces `common.css_t`. The `{% raw %}` block passes Jinja2 syntax through unchanged.
-- **Pass 2** (Sphinx build): Sphinx processes `common.css_t` as a template, resolving `highlight_color` from `html_context` in `conf.py`.
+- **Pass 1** (build time): `SphinxRenderer` renders `common.css.jinja` → produces `common.css.jinja` (the output file). The `{% raw %}` block passes Jinja2 syntax through unchanged.
+- **Pass 2** (Sphinx build): Sphinx processes `common.css.jinja` as a static template, resolving `highlight_color` from `html_context` in `conf.py`.
 
 Removing `{% raw %}` causes an `UndefinedError` at pass 1 because `highlight_color` is not in the render context at that point.
 
