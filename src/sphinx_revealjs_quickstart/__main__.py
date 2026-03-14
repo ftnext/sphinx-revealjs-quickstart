@@ -22,6 +22,9 @@ def main():
     )
     parser.add_argument("--github-pages", action="store_true", default=False)
     args = parser.parse_args()
+    separate_source_dir = args.sep if args.sep is not None else True
+    project_dir = Path(args.path)
+    source_dir = project_dir / "source" if separate_source_dir else project_dir
 
     generate(
         {
@@ -31,7 +34,7 @@ def main():
             "version": args.version,
             "release": args.release,
             "language": args.language,
-            "sep": args.sep if args.sep is not None else True,
+            "sep": separate_source_dir,
             "makefile": False,
             "batchfile": False,
             "extensions": [
@@ -57,31 +60,31 @@ def main():
         "github_pages": args.github_pages,
     }
 
-    common_css_file = Path("source/_static/css/common.css.jinja")
+    common_css_file = source_dir / "_static" / "css" / "common.css.jinja"
     common_css_file.parent.mkdir(parents=True, exist_ok=True)
     common_css_file.write_text(
         render_package_template("common.css.jinja", context) + "\n",
         encoding="utf-8",
     )
 
-    with Path("source/conf.py").open("a", encoding="utf-8") as confpy:
+    with (source_dir / "conf.py").open("a", encoding="utf-8") as confpy:
         confpy.write(render_package_template("conf_append.py.jinja", context) + "\n")
 
-    makefile = Path("Makefile")
+    makefile = project_dir / "Makefile"
     makefile.write_text(
         render_package_template("Makefile.jinja", context) + "\n",
         encoding="utf-8",
     )
 
     if args.github_pages:
-        actions_file = Path(".github/workflows/publish-pages.yml")
+        actions_file = project_dir / ".github" / "workflows" / "publish-pages.yml"
         actions_file.parent.mkdir(parents=True, exist_ok=True)
         actions_file.write_text(
             render_package_template("publish-pages.yml.jinja", context) + "\n",
             encoding="utf-8",
         )
 
-        page_html_file = Path("source/_templates/page.html")
+        page_html_file = source_dir / "_templates" / "page.html"
         page_html_file.parent.mkdir(parents=True, exist_ok=True)
         page_html_file.write_text(
             render_package_template("page.html.jinja", context) + "\n",

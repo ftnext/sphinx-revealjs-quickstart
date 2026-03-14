@@ -101,3 +101,30 @@ def test_main_with_language_arg(tmp_path, monkeypatch):
 
     conf_text = (tmp_path / "source" / "conf.py").read_text()
     assert "language = 'ja'" in conf_text
+
+
+def test_main_generates_all_files_under_project_dir(tmp_path, monkeypatch):
+    monkeypatch.setattr(sphinx_quickstart.time, "strftime", lambda _fmt: "2099")
+    monkeypatch.chdir(tmp_path)
+    project_dir = tmp_path / "demo"
+    monkeypatch.setattr(
+        sys,
+        "argv",
+        [
+            "sphinx-revealjs-quickstart",
+            "-p",
+            "Demo",
+            "-a",
+            "Alice",
+            "-l",
+            "ja",
+            str(project_dir),
+        ],
+    )
+
+    main()
+
+    assert (project_dir / "source" / "conf.py").exists()
+    assert (project_dir / "source" / "_static" / "css" / "common.css.jinja").exists()
+    assert (project_dir / "source" / "index.rst").exists()
+    assert (project_dir / "Makefile").exists()
