@@ -48,10 +48,6 @@ revealjs_script_conf = {
 }
 revealjs_script_plugins = [
     {
-        "name": "RevealHighlight",
-        "src": "revealjs/plugin/highlight/highlight.js",
-    },
-    {
         "name": "RevealNotes",
         "src": "revealjs/plugin/notes/notes.js",
     },
